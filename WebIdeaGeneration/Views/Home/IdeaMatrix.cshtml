@@ -1,0 +1,48 @@
+﻿@model IdeaMatrixViewModel
+@{
+    ViewData["Title"] = "IdeaMatrix";
+}
+<div>
+    <form method="post" asp-action="IdeaMatrix" asp-controller="Home">
+        <label>
+            По вертикали
+            <input value="@Model.Vert" name="vert" type="number" min="0" max="10" />
+        </label>
+        <label>
+            По горизонтали
+            <input value="@Model.Horiz" name="horiz" type="number" min="0" max="10" />
+        </label>
+        <label>
+            Словари
+            <select multiple name="categories">
+                @foreach (var category in Model.AllCategories)
+                {
+                    @if (Model.CategoriesOnView.Any(c => c == category))
+                    {
+                        <option selected>@category</option>
+                    }
+                    else
+                    {
+                        <option>@category</option>
+                    }
+                }
+            </select>
+        </label>
+        <button>+</button>
+    </form>
+</div>
+<div>
+    <table class="table table-dark">
+        @for (int i = 0; i < Model.Vert; i++)
+        {
+            <tr>
+                @for (int j = 0; j < Model.Horiz; j++)
+                {
+                    <th>
+                        @Model.Words[i * Model.Horiz + j].Text
+                    </th>
+                }
+            </tr>
+        }
+    </table>
+</div>
