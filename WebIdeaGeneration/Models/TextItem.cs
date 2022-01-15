@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 
 namespace WebIdeaGeneration.Models
 {
-    public class Word
+    public class TextItem
     {
         public int Id { get; set; }
         public string Text { get; set; }
-        public string Category { get; set; }
+        public string Dictionary { get; set; }
     }
 }
